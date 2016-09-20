@@ -2,7 +2,7 @@
 
   Person = function(attr) {
     this.gender = attr.gender;
-    this.age = attr.age;
+    this.age = parseInt(attr.age);
   };
 
   Person.prototype.getCooper = function(distance) {
