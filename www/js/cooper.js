@@ -1,4 +1,4 @@
- var Person, getAgeGroup, messages;
+ var Person, getAgeGroup, messages, coopMessage;
 
   Person = function(attr) {
     this.gender = attr.gender;
@@ -7,9 +7,9 @@
 
   Person.prototype.getCooper = function(distance) {
     if (this.gender === 'female') {
-      return this.getCooperForWomen(distance);
+      this.coopMessage = this.getCooperForWomen(distance);
     } else {
-      return this.getCooperForMen(distance);
+      this.coopMessage = this.getCooperForMen(distance);
     }
   };
 
