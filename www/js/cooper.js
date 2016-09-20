@@ -14,7 +14,7 @@ Person = function(attr) {
 
 Person.prototype.getCooper = function(dist) {
   distance = parseInt(dist);
-  if (this.gender === 'female') {
+  if (this.gender === 'Female') {
     this.coopMessage = this.getCooperForWomen(distance);
   } else {
     this.coopMessage = this.getCooperForMen(distance);

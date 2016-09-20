@@ -42,10 +42,9 @@ angular.module('starter.controllers', [])
 })
 
 .controller('TestController', function($scope) {
-  // $scope.gender = ['male', 'female'];
   $scope.pickGender = [
-  { text: "Female", value: "female" },
-  { text: "Male", value: "male" }
+  { text: "Female", value: "Female", selected: true},
+  { text: "Male", value: "Male", selected: false }
   ];
 
   $scope.ageValues = {

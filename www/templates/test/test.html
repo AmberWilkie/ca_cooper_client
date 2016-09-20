@@ -11,6 +11,7 @@
               <div>
                 <ion-radio ng-repeat="item in pickGender"
                            ng-value="item.value"
+                           ng-checked="item.selected"
                            ng-model="data.gender">
                              {{item.text}}
                 </ion-radio>
