@@ -4,14 +4,17 @@
       <div class="col">
         <div class="list">
           <form name="testdata">
-            <label class="item item-input item-select">
-              <div class="input-label">
-                Gender
+            <label class="item list">
+              <div class="item item-divider">
+                (Heteronormative) Gender
               </div>
-              <select
-              ng-model="data.gender"
-              ng-options="option as option for option in gender"
-              required></select>
+              <div>
+                <ion-radio ng-repeat="item in pickGender"
+                           ng-value="item.value"
+                           ng-model="data.gender">
+                             {{item.text}}
+                </ion-radio>
+              </div>
             </label>
 
             <div class="item item-divider">Age
@@ -57,7 +60,7 @@
             Cooper Test results
           </div>
           <div class="item item-text-wrap">
-            <p>Person: Age {{person.age}}, Gender {{person.gender}}</p>
+            <p>Age: {{person.age}}, Gender: {{person.gender}}</p>
             <p>Result: {{person.coopMessage}}</p>
           </div>
         </div>
