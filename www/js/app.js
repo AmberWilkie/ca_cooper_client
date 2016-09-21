@@ -53,3 +53,12 @@ angular.module('starter', ['ionic', 'starter.controllers'])
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/about');
 });
+
+angular.module('starter', ['ionic', 'starter.controllers', 'ng-token-auth'])
+    .constant('API_URL', 'https://aw-cooper-api.herokuapp.com/api/v1')
+
+  .config(function ($authProvider, API_URL) {
+    $authProvider.configure({
+      apiUrl: API_URL
+    });
+  });
