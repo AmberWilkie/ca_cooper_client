@@ -1,6 +1,11 @@
 angular.module('starter.controllers', [])
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout) {
+.controller('AppCtrl', function ($rootScope,
+                                 $scope,
+                                 $ionicModal,
+                                 $timeout,
+                                 $auth,
+                                 $ionicLoading) {
 
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
@@ -8,10 +13,6 @@ angular.module('starter.controllers', [])
   // listen for the $ionicView.enter event:
   //$scope.$on('$ionicView.enter', function(e) {
   //});
-
-  $rootScope.$on('auth:login-success', function(ev, user) {
-    $scope.currentUser = user;
-  });
 
   // Form data for the login modal
   $scope.loginData = {};
@@ -35,23 +36,31 @@ angular.module('starter.controllers', [])
 
   // Perform the login action when the user submits the login form
   $scope.doLogin = function() {
+    $ionicLoading.show({
+      template: 'Logging in...'
+    });
     $auth.submitLogin($scope.loginData)
       .then(function (resp) {
         // handle success response
+        $ionicLoading.hide();
         $scope.closeLogin();
       })
       .catch(function (error) {
-        // handle error response
+        $ionicLoading.hide();
         $scope.errorMessage = error;
       });
   };
+
+  $rootScope.$on('auth:login-success', function(ev, user) {
+    $scope.currentUser = user;
+  });
 
 })
 
 .controller('TestController', function($scope) {
   $scope.pickGender = [
-  { text: "Female", value: "Female", selected: true},
-  { text: "Male", value: "Male", selected: false }
+    { text: "Female", value: "Female", selected: true},
+    { text: "Male", value: "Male", selected: false }
   ];
 
   $scope.ageValues = {
@@ -59,12 +68,15 @@ angular.module('starter.controllers', [])
     max: 60,
     value: 20
   };
+
   $scope.distanceValues = {
     min: 1000,
     max: 3500,
     value: 1000
   };
+
   $scope.data = {};
+
   $scope.calculateCooper = function() {
     var person = new Person({
       gender: $scope.data.gender,
