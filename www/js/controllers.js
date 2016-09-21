@@ -58,12 +58,14 @@ angular.module('starter.controllers', [])
 })
 
 .controller('DataCtrl', function($scope, $stateParams){
+  console.log("Fuck everything.");
+  console.log($stateParams);
   $scope.$on('$ionicView.enter', function () {
     $scope.savedDataCollection = $stateParams.savedDataCollection;
   });
 })
 
-.controller('PerformanceCtrl', function($scope, performanceData, $ionicLoading, $ionicPopup){
+.controller('PerformanceCtrl', function($scope, $state, performanceData, $ionicLoading, $ionicPopup){
 
   $scope.saveData = function(person){
     var data = {performance_data: {data: {message: person.cooperMessage}}};
@@ -84,7 +86,10 @@ angular.module('starter.controllers', [])
       template: 'Retrieving data...'
     });
     performanceData.query({}, function(response){
+
       $state.go('app.data', {savedDataCollection: response.entries});
+      console.log(response.entries);
+
       $ionicLoading.hide();
     }, function(error){
       $ionicLoading.hide();
