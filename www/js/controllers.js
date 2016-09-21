@@ -57,6 +57,12 @@ angular.module('starter.controllers', [])
 
 })
 
+.controller('DataCtrl', function($scope, $stateParams){
+  $scope.$on('$ionicView.enter', function () {
+    $scope.savedDataCollection = $stateParams.savedDataCollection;
+  });
+})
+
 .controller('PerformanceCtrl', function($scope, performanceData, $ionicLoading, $ionicPopup){
 
   $scope.saveData = function(person){
@@ -74,7 +80,16 @@ angular.module('starter.controllers', [])
   };
 
   $scope.retrieveData = function(){
-  //Still not implemented...
+    $ionicLoading.show({
+      template: 'Retrieving data...'
+    });
+    performanceData.query({}, function(response){
+      $state.go('app.data', {savedDataCollection: response.entries});
+      $ionicLoading.hide();
+    }, function(error){
+      $ionicLoading.hide();
+      $scope.showAlert('Failure', error.statusText);
+    });
   };
 
   $scope.showAlert = function(message, content) {
