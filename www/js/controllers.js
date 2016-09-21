@@ -9,6 +9,10 @@ angular.module('starter.controllers', [])
   //$scope.$on('$ionicView.enter', function(e) {
   //});
 
+  $rootScope.$on('auth:login-success', function(ev, user) {
+    $scope.currentUser = user;
+  });
+
   // Form data for the login modal
   $scope.loginData = {};
 

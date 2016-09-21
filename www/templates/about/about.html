@@ -2,7 +2,7 @@
   <ion-content>
     <div class="row">
       <div class="col">
-        You run too slow.
+        You run too slow <span ng-if="currentUser">{{currentUser.email}}</span>
       </div>
     </div>
   </ion-content>
