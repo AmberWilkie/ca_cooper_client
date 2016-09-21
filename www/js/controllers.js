@@ -58,8 +58,7 @@ angular.module('starter.controllers', [])
 })
 
 .controller('DataCtrl', function($scope, $stateParams){
-  console.log("Fuck everything.");
-  console.log($stateParams);
+
   $scope.$on('$ionicView.enter', function () {
     $scope.savedDataCollection = $stateParams.savedDataCollection;
   });
@@ -68,13 +67,13 @@ angular.module('starter.controllers', [])
 .controller('PerformanceCtrl', function($scope, $state, performanceData, $ionicLoading, $ionicPopup){
 
   $scope.saveData = function(person){
-    var data = {performance_data: {data: {message: person.cooperMessage}}};
+    var data = {performance_data: {data: {message: person.coopMessage}}};
     $ionicLoading.show({
       template: 'Saving...'
     });
     performanceData.save(data, function(response){
       $ionicLoading.hide();
-      $scope.showAlert('Sucess', response.message);
+      $scope.showAlert('Success', response.message);
     }, function(error){
       $ionicLoading.hide();
       $scope.showAlert('Failure', error.statusText);
@@ -88,8 +87,6 @@ angular.module('starter.controllers', [])
     performanceData.query({}, function(response){
 
       $state.go('app.data', {savedDataCollection: response.entries});
-      console.log(response.entries);
-
       $ionicLoading.hide();
     }, function(error){
       $ionicLoading.hide();
@@ -135,6 +132,5 @@ angular.module('starter.controllers', [])
     });
     person.getCooper($scope.data.distance);
     $scope.person = person;
-    console.log($scope.person);
   };
 });
