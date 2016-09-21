@@ -52,17 +52,39 @@ angular.module('starter.controllers', [])
   };
 
   $rootScope.$on('auth:login-success', function(ev, user) {
-    $scope.currentUser = user;
+    $scope.currentUser = angular.extend(user, $auth.retrieveData('auth_headers'));
   });
 
 })
 
-.controller('PerformanceCtrl', function($scope, performaceData){
-  $scope.saveData = function(){
+.controller('PerformanceCtrl', function($scope, performanceData, $ionicLoading, $ionicPopup){
 
+  $scope.saveData = function(person){
+    var data = {performance_data: {data: {message: person.cooperMessage}}};
+    $ionicLoading.show({
+      template: 'Saving...'
+    });
+    performanceData.save(data, function(response){
+      $ionicLoading.hide();
+      $scope.showAlert('Sucess', response.message);
+    }, function(error){
+      $ionicLoading.hide();
+      $scope.showAlert('Failure', error.statusText);
+    });
   };
-  $scope.retrieveData = function(){
 
+  $scope.retrieveData = function(){
+  //Still not implemented...
+  };
+
+  $scope.showAlert = function(message, content) {
+    var alertPopup = $ionicPopup.alert({
+      title: message,
+      template: content
+    });
+    alertPopup.then(function(res) {
+    // Place some action here if needed...
+    });
   };
 })
 

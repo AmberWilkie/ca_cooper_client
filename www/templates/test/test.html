@@ -64,7 +64,15 @@
             <p>Age: {{person.age}}, Gender: {{person.gender}}</p>
             <p>Result: {{person.coopMessage}}</p>
           </div>
+          <button style="margin: 10px 10px"
+            ng-if="currentUser"
+            ng-controller="PerformanceCtrl"
+            class="button button-full button-calm"
+            ng-click="saveData(person)">Save results
+          </button>
         </div>
+       </div>
+
       </div>
 
     </div>
