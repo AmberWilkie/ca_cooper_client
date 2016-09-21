@@ -1,4 +1,4 @@
-var Person, getAgeGroup, messages, coopMessage;
+var Person, getAgeGroup, messages, coopMessage, coopDistance;
 
 Number.prototype.between = function(a, b) {
   var max, min;
@@ -14,12 +14,18 @@ Person = function(attr) {
 
 Person.prototype.getCooper = function(dist) {
   distance = parseInt(dist);
+  this.coopDistance = distance;
   if (this.gender === 'Female') {
     this.coopMessage = this.getCooperForWomen(distance);
   } else {
     this.coopMessage = this.getCooperForMen(distance);
   }
 };
+
+// Person.prototype.getDistance = function(dist) {
+//   coopDistance = dist;
+//   console.log(coopDistance);
+// };
 
 Person.prototype.getCooperForMen = function(distance) {
   var age, ageGroup, cooperMessage;

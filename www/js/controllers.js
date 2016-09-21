@@ -67,7 +67,8 @@ angular.module('starter.controllers', [])
 .controller('PerformanceCtrl', function($scope, $state, performanceData, $ionicLoading, $ionicPopup){
 
   $scope.saveData = function(person){
-    var data = {performance_data: {data: {message: person.coopMessage}}};
+    var data = {performance_data: {data: {message: person.coopMessage, distance: person.coopDistance}}};
+    console.log(data);
     $ionicLoading.show({
       template: 'Saving...'
     });
