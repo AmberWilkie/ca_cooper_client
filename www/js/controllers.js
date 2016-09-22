@@ -133,12 +133,14 @@ angular.module('starter.controllers', [])
 })
 
 .controller('EditCtrl', function($scope, $ionicLoading, $auth) {
+
   $scope.editProfile = function() {
     $ionicLoading.show({
       template: 'Updating profile...'
     });
     $auth.updateAccount($scope.editData)
       .then(function (resp) {
+        console.log(resp);
         // handle success response
         $ionicLoading.hide();
       })
