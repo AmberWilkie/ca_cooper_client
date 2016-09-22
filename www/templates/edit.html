@@ -2,7 +2,35 @@
   <ion-content>
     <div class="row">
       <div class="col">
-        Edit page!
+        <h1 class="title">Login</h1>
+        <ion-content>
+          <form ng-submit="editProfile()">
+            <div class="list">
+              <label class="item item-input">
+                <span class="input-label">Name</span>
+                <input type="text" ng-model="editData.name">
+              </label>
+              <label class="item item-input">
+                <span class="input-label">Email</span>
+                <input type="email" ng-model="editData.email">
+              </label>
+              <label class="item item-input">
+                <span class="input-label">Password</span>
+                <input type="password" ng-model="editData.password">
+              </label>
+              <label class="item">
+                <button class="button button-block button-positive" type="submit">Update Profile</button>
+              </label>
+            </div>
+          </form>
+        </ion-content>
+        <ion-content>
+          <div class="row" ng-if="errorMessage">
+            <p ng-repeat="error in errorMessage.errors">
+              {{error}}
+            </p>
+          </div>
+      </ion-content>
       </div>
     </div>
   </ion-content>

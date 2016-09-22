@@ -55,6 +55,8 @@ angular.module('starter.controllers', [])
     $scope.currentUser = angular.extend(user, $auth.retrieveData('auth_headers'));
   });
 
+
+
 })
 
 .controller('DataCtrl', function ($scope, $stateParams) {
@@ -130,8 +132,22 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('EditCtrl', function($scope) {
-  
+.controller('EditCtrl', function($scope, $ionicLoading, $auth) {
+  $scope.editProfile = function() {
+    $ionicLoading.show({
+      template: 'Updating profile...'
+    });
+    $auth.updateAccount($scope.editData)
+      .then(function (resp) {
+        // handle success response
+        $ionicLoading.hide();
+      })
+      .catch(function (error) {
+        $ionicLoading.hide();
+        $scope.errorMessage = error;
+      });
+  };
+
 })
 
 .controller('TestController', function($scope) {
