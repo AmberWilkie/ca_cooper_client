@@ -130,6 +130,10 @@ angular.module('starter.controllers', [])
   };
 })
 
+.controller('EditCtrl', function($scope) {
+  
+})
+
 .controller('TestController', function($scope) {
   $scope.pickGender = [
     { text: "Female", value: "Female", selected: true},

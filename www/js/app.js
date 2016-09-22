@@ -68,6 +68,19 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
        controller: 'DataCtrl'
      }
     }
+  })
+
+    .state('app.edit', {
+      url: '/edit',
+      params: {
+
+      },
+      views: {
+       'menuContent': {
+         templateUrl: 'templates/edit.html',
+         controller: 'EditCtrl'
+       }
+     }
   });
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/about');
